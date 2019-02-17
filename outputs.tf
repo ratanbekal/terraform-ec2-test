@@ -1,44 +1,45 @@
 output "ids" {
-  description = "List of IDs of instances"
+  description = "Instance IDs"
   value       = "${module.ec2.id}"
 }
 
-output "ids_t2" {
-  description = "List of IDs of t2-type instances"
-  value       = "${module.ec2_with_t2_unlimited.id}"
-}
-
-output "public_dns" {
-  description = "List of public DNS names assigned to the instances"
-  value       = "${module.ec2.public_dns}"
-}
-
-output "vpc_security_group_ids" {
-  description = "List of VPC security group ids assigned to the instances"
-  value       = "${module.ec2.vpc_security_group_ids}"
+output "availability_zone" {
+  description = "List of availability zones of instances"
+  value       = ["${local.this_availability_zone}"]
 }
 
 output "tags" {
-  description = "List of tags"
+  description = "Tags"
   value       = "${module.ec2.tags}"
 }
 
-output "instance_id" {
-  description = "EC2 instance ID"
-  value       = "${module.ec2.id[0]}"
+output "network_interface_id" {
+  description = "List of IDs of the network interface of instances"
+  value       = ["${local.this_network_interface_id}"]
 }
 
-output "instance_public_dns" {
-  description = "Public DNS name assigned to the EC2 instance"
-  value       = "${module.ec2.public_dns[0]}"
+output "public_dns" {
+  description = "Public DNS names assigned to the instances"
+  value       = "${module.ec2.public_dns}"
 }
 
-output "credit_specification" {
-  description = "Credit specification of EC2 instance (empty list for not t2 instance types)"
-  value       = "${module.ec2.credit_specification}"
+output "public_ip" {
+  description = "List of public IP addresses assigned to the instances, if applicable"
+  value       = ["${local.this_public_ip}"]
 }
 
-output "credit_specification_t2_unlimited" {
-  description = "Credit specification of t2-type EC2 instance"
-  value       = "${module.ec2_with_t2_unlimited.credit_specification}"
+output "private_ip" {
+  description = "List of private IP addresses assigned to the instances"
+  value       = ["${local.this_private_ip}"]
 }
+
+output "vpc_security_group_ids" {
+  description = "VPC security group ids assigned to the instances"
+  value       = "${module.ec2.vpc_security_group_ids}"
+}
+
+
+
+
+
+
